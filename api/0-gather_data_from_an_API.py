@@ -36,7 +36,7 @@ def fetch_employee_todo_progress(employee_id):
 
 if __name__ == "__main__":
     if len(argv) != 2:
-        print("Usage: python script.py <employee_id>")
+        exit()
 
     employee_id = argv[1]
     fetch_employee_todo_progress(employee_id)

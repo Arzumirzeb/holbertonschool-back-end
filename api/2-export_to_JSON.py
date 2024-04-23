@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-"""Export to CSV"""
+"""Export to JSON"""
 
-import csv
+import json
 import requests
 from sys import argv
 
@@ -19,13 +19,20 @@ def fetch_employee_todo_progress(employee_id):
     todos = requests.get(todos_url)
     todos_data = todos.json()
 
-    csv_file = "{}.csv".format(employee_id)
-    with open(csv_file, 'w') as csvfile:
-        csv_writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+    datas = []
+    for task in todos_data:
+        data = {
+                "task": task['title'],
+                "completed": task['completed'],
+                "username": employee_name
+                }
+        datas.append(data)
 
-        for task in todos_data:
-            csv_writer.writerow([employee_id, employee_name,
-                                task['completed'], task['title']])
+    tasks = {employee_id: datas}
+
+    json_file = "{}.json".format(employee_id)
+    with open(json_file, 'w') as jsonfile:
+        json.dump(tasks, jsonfile)
 
 
 if __name__ == "__main__":
