@@ -2,8 +2,8 @@
 
 """Export to CSV"""
 
-import requests
 import csv
+import requests
 from sys import argv
 
 
