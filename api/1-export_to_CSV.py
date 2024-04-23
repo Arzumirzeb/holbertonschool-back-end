@@ -27,7 +27,6 @@ def fetch_employee_todo_progress(employee_id):
         for task in todos_data:
             csv_writer.writerow([employee_id, employee_name,
                                 task['completed'], task['title']])
-        print(csv_file)
 
 
 if __name__ == "__main__":
