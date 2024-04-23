@@ -28,7 +28,7 @@ def fetch_employee_todo_progress(employee_id):
     num_completed_tasks = len(completed_tasks)
     total_tasks = len(todos_data)
 
-    print("Employee {} is done with tasks({}/{}:"
+    print("Employee {} is done with tasks({}/{}):"
           .format(employee_name, num_completed_tasks, total_tasks))
     for task in completed_tasks:
         print(f"\t{task['title']}")
