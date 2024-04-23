@@ -31,7 +31,7 @@ def fetch_employee_todo_progress(employee_id):
     print("Employee {} is done with tasks({}/{}):"
           .format(employee_name, num_completed_tasks, total_tasks))
     for task in completed_tasks:
-        print(f"\t{task['title']}")
+        print(f"\t {task['title']}")
 
 
 if __name__ == "__main__":
