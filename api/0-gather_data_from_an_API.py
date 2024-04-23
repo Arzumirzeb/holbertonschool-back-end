@@ -10,14 +10,16 @@ from sys import argv
 
 
 def fetch_employee_todo_progress(employee_id):
-    user_response = requests.get(f"https://jsonplaceholder.\
-            typicode.com/users/{employee_id}")
-    user_data = user_response.json()
+    user_url = "https://jsonplaceholder.typicode.com/users/{}"\
+               .format(employee_id)
+    user = requests.get(user_url)
+    user_data = user.json()
     employee_name = user_data['name']
 
-    todos_response = requests.get(f"https://jsonplaceholder.\
-            typicode.com/todos?userId={employee_id}")
-    todos_data = todos_response.json()
+    todos_url = "https://jsonplaceholder.typicode.com/todos?userId={}"\
+                .format(employee_id)
+    todos = requests.get(todos_url)
+    todos_data = todos.json()
 
     completed_tasks = []
     for task in todos_data:
@@ -26,8 +28,8 @@ def fetch_employee_todo_progress(employee_id):
     num_completed_tasks = len(completed_tasks)
     total_tasks = len(todos_data)
 
-    print(f"Employee {employee_name} is done with tasks\
-            ({num_completed_tasks}/{total_tasks}):")
+    print("Employee {} is done with tasks({}/{}:"
+          .format(employee_name, num_completed_tasks, total_tasks))
     for task in completed_tasks:
         print(f"\t{task['title']}")
 
